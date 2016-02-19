@@ -1,0 +1,2 @@
+django>=1.6,<1.8
+django-redis>=4.3.0

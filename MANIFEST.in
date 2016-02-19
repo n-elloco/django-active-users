@@ -1,0 +1,5 @@
+graft src
+recursive-exclude src *.pyc
+include REQUIREMENTS
+include README
+include LICENSE
