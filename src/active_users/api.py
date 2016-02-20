@@ -5,15 +5,15 @@ from .settings import KEY_CLASS
 
 
 def get_active_users_keys(pattern='au:*'):
+    """ Get all keys from redis """
     return get_redis_connection().keys(pattern)
 
 
 def get_active_users_count():
+    """ Get redis keys count """
     return len(get_active_users_keys())
 
 
 def get_active_users():
-    keys = get_active_users_keys()
-    return map(KEY_CLASS.key_to_dict, keys)
-
-
+    """ Get list of all active users """
+    return map(KEY_CLASS.key_to_dict, get_active_users_keys())
