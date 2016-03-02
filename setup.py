@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='active-users',
-    version='0.0.1a',
+    name='django-active-users',
+    version='0.0.1',
     package_dir={'': 'src'},
     packages=find_packages('src'),
     url='',
@@ -12,7 +12,7 @@ setup(
     description='Monitoring of active users in Django using Redis',
     install_requires=open('REQUIREMENTS'),
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
