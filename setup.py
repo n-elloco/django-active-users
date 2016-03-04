@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-active-users',
-    version='0.0.1',
+    version='0.0.1.1',
     package_dir={'': 'src'},
     packages=find_packages('src'),
     url='',
@@ -16,7 +16,6 @@ setup(
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Framework:: Django',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',

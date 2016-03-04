@@ -1,5 +1,5 @@
-MONITORING ACTIVE USERS
-=======================
+MONITORING DJANGO ACTIVE USERS
+==============================
 
 Monitoring of active users in Django using Redis
 
@@ -16,7 +16,7 @@ Install
 -------
 
 ```bash
-pip install active-users
+pip install django-active-users
 ```
 
 
