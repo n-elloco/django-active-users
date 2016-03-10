@@ -54,7 +54,16 @@ class ActiveUserEntry(AbstractActiveUserEntry):
         if request.user.id is not None:
             instance.user_id = request.user.id
             instance.username = request.user.username
-            instance.ip = request.META.get('REMOTE_ADDR', u'127.0.0.1')
+            instance.ip = cls.get_client_ip(request)
         if request.session:
             instance.session_id = request.session.session_key
         return instance
+
+    @staticmethod
+    def get_client_ip(request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR', '127.0.0.1')
+        return ip
