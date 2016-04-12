@@ -1,4 +1,5 @@
 # coding:utf-8
+from django.utils.encoding import force_unicode
 from django_redis import get_redis_connection
 
 from .settings import KEY_CLASS
@@ -6,7 +7,7 @@ from .settings import KEY_CLASS
 
 def get_active_users_keys(pattern='au:*'):
     """ Get all keys from redis """
-    return get_redis_connection().keys(pattern)
+    return map(force_unicode, get_redis_connection().keys(pattern))
 
 
 def get_active_users_count():
