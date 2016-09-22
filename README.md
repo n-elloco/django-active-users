@@ -9,7 +9,7 @@ Requirements
 
 - Python: 2.7
 - Django: 1.6, 1.7
-- Django-redis: 4.30
+- Django-redis: 4.4.4
 
 
 Install
