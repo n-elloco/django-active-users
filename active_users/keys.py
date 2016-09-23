@@ -1,4 +1,5 @@
 # coding:utf-8
+from six import text_type
 
 
 class AbstractActiveUserEntry(object):
@@ -31,7 +32,7 @@ class AbstractActiveUserEntry(object):
         key_items = [self.key_prefix]
         for field in self.fields:
             key_items.append(getattr(self, field, u''))
-        return u':'.join(map(unicode, key_items))
+        return u':'.join(map(text_type, key_items))
 
     @classmethod
     def key_to_dict(cls, key):

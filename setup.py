@@ -1,11 +1,10 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name='django-active-users',
     version='0.0.1.4',
-    package_dir={'': 'src'},
-    packages=find_packages('src'),
-    url='',
+    packages=['active_users'],
+    url='https://github.com/n-elloco/django-active-users',
     license='MIT',
     author='BARS Group',
     author_email='',
@@ -19,5 +18,6 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
     ]
 )

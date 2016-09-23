@@ -4,7 +4,7 @@ import re
 from django.utils.functional import cached_property
 from django_redis import get_redis_connection
 
-from .settings import KEY_EXPIRE, KEY_CLASS, EXCLUDE_URL_PATTERNS
+from active_users.settings import active_users_settings as settings
 
 
 class ActiveUsersSessionMiddleware(object):
@@ -14,13 +14,13 @@ class ActiveUsersSessionMiddleware(object):
         return get_redis_connection()
 
     def process_request(self, request):
-        if EXCLUDE_URL_PATTERNS:
-            if any(re.search(pat, request.path) for pat in EXCLUDE_URL_PATTERNS):
+        if settings.EXCLUDE_URL_PATTERNS:
+            if any(re.search(pat, request.path) for pat in settings.EXCLUDE_URL_PATTERNS):
                 return
         if request.user.id is not None:
-            key = KEY_CLASS.create_from_request(request)
+            key = settings.KEY_CLASS.create_from_request(request)
             self.redis_client.setex(
                 name=key.dump(),
                 value=0,
-                time=KEY_EXPIRE
+                time=settings.KEY_EXPIRE
             )

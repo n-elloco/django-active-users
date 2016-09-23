@@ -2,12 +2,11 @@
 import os
 import sys
 
-from django.conf import settings, global_settings
+from django.conf import settings
 
 
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    app_name = os.path.basename(current_dir)
     sys.path.insert(0, os.path.join(current_dir, '..'))
 
     conf_kwargs = dict(
@@ -25,24 +24,36 @@ def main():
             }
         },
         SITE_ID=1,
-        MIDDLEWARE_CLASSES=global_settings.MIDDLEWARE_CLASSES + ('active_users.middleware.ActiveUsersSessionMiddleware',),
+        MIDDLEWARE_CLASSES=(
+            'django.middleware.common.CommonMiddleware',
+            'django.contrib.sessions.middleware.SessionMiddleware',
+            'django.contrib.auth.middleware.AuthenticationMiddleware',
+            'active_users.middleware.ActiveUsersSessionMiddleware',
+        ),
         INSTALLED_APPS=(
             'django.contrib.auth',
             'django.contrib.contenttypes',
             'django.contrib.sessions',
             'django.contrib.sites',
         ),
-        ROOT_URLCONF=app_name + '.test_view',
+        ROOT_URLCONF='test_app.views',
     )
 
     settings.configure(**conf_kwargs)
 
+    try:
+        # For django>=1.7
+        from django import setup
+    except ImportError:
+        pass
+    else:
+        setup()
+
     from django.test.utils import get_runner
     runner = get_runner(settings)()
-    failures = runner.run_tests((app_name,))
-
-    sys.exit(failures)
+    return runner.run_tests(('test_app',))
 
 
 if __name__ == '__main__':
-    main()
+    failures = main()
+    sys.exit(failures)
