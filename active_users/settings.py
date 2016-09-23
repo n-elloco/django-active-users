@@ -1,7 +1,10 @@
 # coding:utf-8
 from django.conf import settings
 from django.test.signals import setting_changed
-from django.utils.module_loading import import_by_path
+try:
+    from django.utils.module_loading import import_string
+except:
+    from django.utils.module_loading import import_by_path as import_string
 
 from active_users.keys import AbstractActiveUserEntry
 
@@ -25,7 +28,7 @@ class ActiveUsersSettings(object):
         assert issubclass(self.KEY_CLASS, AbstractActiveUserEntry)
 
     def set_setting(self, key, value):
-        setattr(self, key, import_by_path(value) if key == 'KEY_CLASS' else value)
+        setattr(self, key, import_string(value) if key == 'KEY_CLASS' else value)
 
 
 active_users_settings = ActiveUsersSettings()

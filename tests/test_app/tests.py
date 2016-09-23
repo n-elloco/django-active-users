@@ -19,6 +19,7 @@ class ActiveUsersTest(TestCase):
 
     @classmethod
     def setUpClass(cls):
+        super(ActiveUsersTest, cls).setUpClass()
         cls.redis_client = get_redis_connection()
 
         cls.key_class = active_users_settings.KEY_CLASS
@@ -30,7 +31,7 @@ class ActiveUsersTest(TestCase):
     def setUp(self):
         self.client.login(username=self.username, password=self.user_password)
 
-    def tearDodwn(self):
+    def tearDown(self):
         self.redis_client.flushdb()
 
     def test_view(self):

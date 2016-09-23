@@ -35,6 +35,7 @@ def main():
             'django.contrib.contenttypes',
             'django.contrib.sessions',
             'django.contrib.sites',
+            'test_app'
         ),
         ROOT_URLCONF='test_app.views',
     )
