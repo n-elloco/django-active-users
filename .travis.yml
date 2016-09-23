@@ -21,7 +21,7 @@ install:
   - pip install six
 
 script:
-  - python tests/runtests.py
+  - python tests/run_tests.py
 
 services:
   - redis-server
