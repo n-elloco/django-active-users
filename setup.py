@@ -10,7 +10,7 @@ setup(
     author='BARS Group',
     author_email='',
     description='Monitoring of active users in Django using Redis',
-    install_requires=open('REQUIREMENTS'),
+    install_requires=open('REQUIREMENTS').read(),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
