@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-active-users',
-    version='0.0.1.3',
+    version='0.0.1.4',
     package_dir={'': 'src'},
     packages=find_packages('src'),
     url='',
@@ -10,7 +10,7 @@ setup(
     author='BARS Group',
     author_email='',
     description='Monitoring of active users in Django using Redis',
-    install_requires=open('REQUIREMENTS'),
+    install_requires=open('REQUIREMENTS').read(),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
