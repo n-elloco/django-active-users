@@ -1,0 +1,37 @@
+language: python
+
+python:
+  - 3.5
+  - 3.4
+  - 3.3
+  - 3.2
+  - 2.7
+
+env:
+  - DJANGO="Django>=1.10,<1.11"
+  - DJANGO="Django>=1.9,<1.10"
+  - DJANGO="Django>=1.8,<1.9"
+  - DJANGO="Django>=1.7,<1.8"
+  - DJANGO="Django>=1.6,<1.7"
+  - DJANGO="Django>=1.5,<1.6"
+
+install:
+  - pip install $DJANGO
+  - pip install django-redis==4.4.4
+  - pip install six
+
+script:
+  - python tests/runtests.py
+
+services:
+  - redis-server
+
+matrix:
+
+  exclude:
+   - python: 3.5
+     env: DJANGO="Django>=1.7,<1.8"
+   - python: 3.5
+     env: DJANGO="Django>=1.6,<1.7"
+   - python: 3.5
+     env: DJANGO="Django>=1.5,<1.6"
