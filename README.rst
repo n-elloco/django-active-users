@@ -1,6 +1,10 @@
 MONITORING DJANGO ACTIVE USERS
 ==============================
 
+.. image:: https://travis-ci.org/n-elloco/django-active-users.svg?branch=master
+    :target: https://travis-ci.org/n-elloco/django-active-users
+
+
 *Monitoring of active users in Django using Redis*
 
 
