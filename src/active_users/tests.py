@@ -1,24 +1,19 @@
 # coding: utf-8
-from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.test import RequestFactory, TestCase
+from django.test import TestCase, Client
 
-
-def active_view(request):
-    return HttpResponse('<h1>Test view has responsed<h1>')
+from active_users.test_view import active_view
 
 
 class ActiveUsersTest(TestCase):
 
     def setUp(self):
-        self.factory = RequestFactory()
+        self.client = Client()
         self.user = User.objects.create_user(username='test', email='test@test.com', password='secret')
+        self.client.login(username='test', password='secret')
 
     def test_view(self):
-        request = self.factory.get(active_view)
-        request.user = self.user
+        request = self.client.get('/')
         response = active_view(request)
 
         self.assertEqual(response.status_code, 200)
-
