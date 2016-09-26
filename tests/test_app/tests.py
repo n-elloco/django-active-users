@@ -1,4 +1,5 @@
 # coding: utf-8
+import json
 import time
 
 from django.contrib.auth.models import User
@@ -8,8 +9,6 @@ from django_redis import get_redis_connection
 
 from active_users.api import get_active_users_count, get_active_users
 from active_users.settings import active_users_settings
-
-from .views import active_view
 
 
 class ActiveUsersTest(TestCase):
@@ -35,10 +34,7 @@ class ActiveUsersTest(TestCase):
         self.redis_client.flushdb()
 
     def test_view(self):
-        request = self.client.get('/')
-        response = active_view(request)
-
-        self.assertEqual(response.status_code, 200)
+        self.url_request('/')
         self.assertEqual(get_active_users_count(), 1)
 
         users = get_active_users()
@@ -49,19 +45,25 @@ class ActiveUsersTest(TestCase):
 
     @override_settings(ACTIVE_USERS_KEY_EXPIRE=3)
     def test_expire_setting(self):
-        request = self.client.get('/')
-        response = active_view(request)
-
-        self.assertEqual(response.status_code, 200)
-
+        self.url_request('/')
         time.sleep(3)
-
         self.assertEqual(get_active_users_count(), 0)
 
     @override_settings(ACTIVE_USERS_EXCLUDE_URL_PATTERNS=['/excluded'])
     def test_excluded_view(self):
-        request = self.client.get('/excluded')
-        response = active_view(request)
-
-        self.assertEqual(response.status_code, 200)
+        self.url_request('/excluded/')
         self.assertEqual(get_active_users_count(), 0)
+
+    def test_api_view(self):
+        self.url_request('/')
+        response = self.url_request('/active-users/active-users-info/')
+
+        data = json.loads(response.content.decode())
+        self.assertIn('data', data)
+        self.assertIn('count', data)
+
+    def url_request(self, url):
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+        return response
