@@ -1,5 +1,5 @@
-graft src
-recursive-exclude src *.pyc
+graft active_users
+recursive-exclude active_users *.pyc
 include REQUIREMENTS
-include README
+include README.rst
 include LICENSE
