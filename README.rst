@@ -55,7 +55,8 @@ Settings
 
 ``ACTIVE_USERS_EXCLUDE_URL_PATTERNS`` - List of regular expressions for excluding URLs. If they are matched, the visitor (and pageview) key will not be create.
 
-``ACTIVE_USERS_KEY_CLASS`` - Class of visitor key entry. It should be inherited from ``active_users.keys.AbstractActiveUserEntry``. Default ``active_users.keys.ActiveUserEntry``
+``ACTIVE_USERS_KEY_CLASS`` - Class of visitor key entry. It should be descendant of ``active_users.keys.AbstractActiveUserEntry``.
+Default ``active_users.keys.ActiveUserEntry``. See more in `Custom dimensions in the keys`_
 
 
 API
@@ -76,10 +77,45 @@ You can call methods from ``active_users.api`` module directly.
 Also, you can include special view in your Django application, adding the URL pattern to your ``urls.py`` file
 
 
-..code-block:: python
+.. code-block:: python
 
     urlpatterns = [
         ...
         url(r'^active-users/', include('active_users.api.urls')),
         ...
     ]
+
+
+Custom dimensions in the keys
+-----------------------------
+
+By default, 4 dimensions are saved in the keys (``user_id``, ``session_id``, ``IP``, ``username``).
+This is provided by class ``ActiveUserEntry``, which inherits from absctract class ``AbstractActiveUserEntry``.
+You can use your dimensions, defined in your own class, which should be descendant of class ``AbstractActiveUserEntry`` and
+you need to define the logic of using these dimensions inside the class method ``create_from_request``.
+
+For example, we need to save information about service, which makes request, and this information we can take
+from request header. Also, we want use all dimensions from class ``ActiveUserEntry``.
+
+
+.. code-block:: python
+
+    from active_users.keys import ActiveUserEntry
+
+    class OurActiveUserEntry(ActiveUserEntry):
+
+        fields = ('service_id',) + ActiveUserEntry.fields
+
+        @classmethod
+        def create_from_request(cls, request):
+            instance = super(OurActiveUserEntry, cls).create_from_request(request)
+            instance.app_id = request.META.get('HTTP_SERVICE_ID', u'')
+            return instance
+
+
+At the end, we need to specify option ``ACTIVE_USERS_KEY_CLASS`` in the ``settings.py``.
+
+
+.. code-block:: python
+
+    ACTIVE_USERS_KEY_CLASS = 'my_app.keys.OurActiveUserEntry'
