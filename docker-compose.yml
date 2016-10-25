@@ -1,0 +1,14 @@
+redis:
+  image: redis
+  ports:
+    - "6379:6379"
+
+app:
+  build: .
+  working_dir: /src
+  restart: always
+  links:
+    - redis
+  environment:
+    - REDIS_HOST=redis://redis:6379/0
+  command: tox
