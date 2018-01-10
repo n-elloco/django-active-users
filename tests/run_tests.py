@@ -5,6 +5,14 @@ import sys
 from django.conf import settings
 
 
+MIDDLEWARE = (
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'active_users.middleware.ActiveUsersSessionMiddleware',
+)
+
+
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     sys.path.insert(0, os.path.join(current_dir, '..'))
@@ -13,7 +21,8 @@ def main():
         CACHES={
             'default': {
                 'BACKEND': 'django_redis.cache.RedisCache',
-                'LOCATION': os.environ.get('REDIS_HOST', 'redis://127.0.0.1:6379/0'),
+                'LOCATION': os.environ.get(
+                    'REDIS_HOST', 'redis://127.0.0.1:6379/0'),
             }
         },
         DATABASES={
@@ -24,12 +33,8 @@ def main():
             }
         },
         SITE_ID=1,
-        MIDDLEWARE_CLASSES=(
-            'django.middleware.common.CommonMiddleware',
-            'django.contrib.sessions.middleware.SessionMiddleware',
-            'django.contrib.auth.middleware.AuthenticationMiddleware',
-            'active_users.middleware.ActiveUsersSessionMiddleware',
-        ),
+        MIDDLEWARE_CLASSES=MIDDLEWARE,  # for old django versions
+        MIDDLEWARE=MIDDLEWARE,
         INSTALLED_APPS=(
             'django.contrib.auth',
             'django.contrib.contenttypes',
