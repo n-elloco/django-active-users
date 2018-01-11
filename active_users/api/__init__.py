@@ -17,4 +17,6 @@ def get_active_users_count():
 
 def get_active_users():
     """ Get list of all active users """
-    return [settings.KEY_CLASS.key_to_dict(key) for key in get_active_users_keys()]
+    return [
+        settings.KEY_CLASS.key_to_dict(key) for key in get_active_users_keys()
+    ]

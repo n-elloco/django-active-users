@@ -3,7 +3,7 @@ from django.conf import settings
 from django.test.signals import setting_changed
 try:
     from django.utils.module_loading import import_string
-except:
+except ImportError:
     from django.utils.module_loading import import_by_path as import_string
 
 from active_users.keys import AbstractActiveUserEntry
@@ -28,7 +28,8 @@ class ActiveUsersSettings(object):
         assert issubclass(self.KEY_CLASS, AbstractActiveUserEntry)
 
     def set_setting(self, key, value):
-        setattr(self, key, import_string(value) if key == 'KEY_CLASS' else value)
+        setattr(
+            self, key, import_string(value) if key == 'KEY_CLASS' else value)
 
 
 active_users_settings = ActiveUsersSettings()
@@ -38,7 +39,8 @@ def reload_settings(*args, **kwargs):
     if kwargs['setting'].startswith(PREFIX):
         key = kwargs['setting'].replace(PREFIX + '_', '')
         if key in DEFAULTS:
-            active_users_settings.set_setting(key, kwargs['value'] or DEFAULTS[key])
+            active_users_settings.set_setting(
+                key, kwargs['value'] or DEFAULTS[key])
 
 
 setting_changed.connect(reload_settings)

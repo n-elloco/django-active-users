@@ -25,7 +25,10 @@ class ActiveUsersTest(TestCase):
 
         cls.client = Client()
         cls.user = User.objects.create_user(
-            username=cls.username, email='test@test.com', password=cls.user_password)
+            username=cls.username,
+            email='test@test.com',
+            password=cls.user_password
+        )
 
     def setUp(self):
         self.client.login(username=self.username, password=self.user_password)
