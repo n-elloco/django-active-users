@@ -2,8 +2,8 @@ from setuptools import setup
 
 setup(
     name='django-active-users',
-    version='0.2',
-    packages=['active_users'],
+    version='0.2.1',
+    packages=['active_users', 'active_users.api'],
     url='https://github.com/n-elloco/django-active-users',
     license='MIT',
     author='Nikita Ekaterinchuk',
