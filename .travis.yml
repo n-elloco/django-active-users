@@ -13,12 +13,12 @@ env:
   - DJANGO="Django>=1.9,<1.10"
   - DJANGO="Django>=1.8,<1.9"
   - DJANGO="Django>=1.7,<1.8"
-  - DJANGO="Django>=1.6,<1.7"
-  - DJANGO="Django>=1.5,<1.6"
+  - DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
+  - DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
 
 install:
   - pip install $DJANGO
-  - pip install django-redis==4.4.4
+  - pip install django-redis
   - pip install six
 
 script:
