@@ -3,7 +3,6 @@ language: python
 python:
   - 3.5
   - 3.4
-  - 3.3
   - 2.7
 
 env:
@@ -13,12 +12,12 @@ env:
   - DJANGO="Django>=1.9,<1.10"
   - DJANGO="Django>=1.8,<1.9"
   - DJANGO="Django>=1.7,<1.8"
-  - DJANGO="Django>=1.6,<1.7"
-  - DJANGO="Django>=1.5,<1.6"
+  - DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
+  - DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
 
 install:
   - pip install $DJANGO
-  - pip install django-redis==4.4.4
+  - pip install django-redis
   - pip install six
 
 script:
@@ -35,22 +34,22 @@ matrix:
    - python: 3.6
      env: DJANGO="Django>=2.0,<2.1"
 
+   - python: 3.3
+     env: DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
+   - python: 3.3
+     env: DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
+   - python: 3.3
+     env: DJANGO="Django>=1.7,<1.8 django-redis==4.4.4"
+   - python: 3.3
+     env: DJANGO="Django>=1.8,<1.9 django-redis==4.4.4"
+
   exclude:
    - python: 3.5
      env: DJANGO="Django>=1.7,<1.8"
    - python: 3.5
-     env: DJANGO="Django>=1.6,<1.7"
+     env: DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
    - python: 3.5
-     env: DJANGO="Django>=1.5,<1.6"
-
-   - python: 3.3
-     env: DJANGO="Django>=2.0,<2.1"
-   - python: 3.3
-     env: DJANGO="Django>=1.11,<2"
-   - python: 3.3
-     env: DJANGO="Django>=1.10,<1.11"
-   - python: 3.3
-     env: DJANGO="Django>=1.9,<1.10"
+     env: DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
 
    - python: 2.7
      env: DJANGO="Django>=2.0,<2.1"
