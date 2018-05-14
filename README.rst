@@ -19,7 +19,8 @@ Requirements
 
 - Python: 2.7, 3.3, 3.4, 3.5, 3.6
 - Django: 1.5+
-- Django-redis: 4.4.4
+- Django-redis: 4.9.0
+                4.4.4 (for Django 1.5, 1.6 or Python 3.3)
 
 
 Install
