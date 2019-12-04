@@ -17,7 +17,7 @@ for last specified time interval, using Redis cache.
 Requirements
 ------------
 
-- Python: 2.7, 3.3, 3.4, 3.5, 3.6
+- Python: 2.7, 3.3, 3.4, 3.5, 3.6, 3.7
 - Django: 1.5+
 - Django-redis: 4.9.0
                 4.4.4 (for Django 1.5, 1.6 or Python 3.3)
@@ -38,13 +38,13 @@ Your django application should have a Redis cache setting.
 See more in ``django-redis`` `official documentation <http://niwinz.github.io/django-redis/latest/#_configure_as_cache_backend>`_. 
 
 Add ``active_users.middleware.ActiveUsersSessionMiddleware`` to your project's
-``MIDDLEWARE`` after the ``SessionMiddleware``.
+``MIDDLEWARE`` after the ``AuthenticationMiddleware``.
 
 .. code-block:: python
 
     MIDDLEWARE = (
         ...
-        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
         'active_users.middleware.ActiveUsersSessionMiddleware',
         ...
     )
@@ -55,7 +55,7 @@ For applications with Django version earlier than 1.10 use ``MIDDLEWARE_CLASSES`
 
     MIDDLEWARE_CLASSES = (
         ...
-        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
         'active_users.middleware.ActiveUsersSessionMiddleware',
         ...
     )
