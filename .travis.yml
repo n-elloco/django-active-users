@@ -7,16 +7,12 @@ python:
   - 2.7
 
 env:
-  - DJANGO="Django>=2.2,<2.3"
-  - DJANGO="Django>=2.1,<2.2"
   - DJANGO="Django>=2.0,<2.1"
   - DJANGO="Django>=1.11,<2"
   - DJANGO="Django>=1.10,<1.11"
   - DJANGO="Django>=1.9,<1.10"
   - DJANGO="Django>=1.8,<1.9"
   - DJANGO="Django>=1.7,<1.8"
-  - DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
-  - DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
 
 install:
   - pip install $DJANGO
@@ -39,7 +35,7 @@ matrix:
    - python: 3.8
      env: DJANGO="Django>=2.2,<2.3"
    - python: 3.8
-     env: DJANGO="Django>=3.0,<3.1"
+     env: DJANGO="Django>=3.0,<3.1 git+https://github.com/niwinz/django-redis"
      
    - python: 3.7
      env: DJANGO="Django>=1.11,<2"
@@ -50,7 +46,7 @@ matrix:
    - python: 3.7
      env: DJANGO="Django>=2.2,<2.3"
    - python: 3.7
-     env: DJANGO="Django>=3.0,<3.1"
+     env: DJANGO="Django>=3.0,<3.1 git+https://github.com/niwinz/django-redis"
      
    - python: 3.6
      env: DJANGO="Django>=1.11,<2"
@@ -61,33 +57,11 @@ matrix:
    - python: 3.6
      env: DJANGO="Django>=2.2,<2.3"
    - python: 3.6
-     env: DJANGO="Django>=3.0,<3.1"  
-
-   - python: 3.3
-     env: DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
-   - python: 3.3
-     env: DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
-   - python: 3.3
-     env: DJANGO="Django>=1.7,<1.8 django-redis==4.4.4"
-   - python: 3.3
-     env: DJANGO="Django>=1.8,<1.9 django-redis==4.4.4"
+     env: DJANGO="Django>=3.0,<3.1 git+https://github.com/niwinz/django-redis"
 
   exclude:
    - python: 3.5
      env: DJANGO="Django>=1.7,<1.8"
-   - python: 3.5
-     env: DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
-   - python: 3.5
-     env: DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
-     
-   - python: 3.4
-     env: DJANGO="Django>=2.1,<2.2"
-   - python: 3.4
-     env: DJANGO="Django>=2.2,<2.3"  
 
    - python: 2.7
      env: DJANGO="Django>=2.0,<2.1"
-   - python: 2.7
-     env: DJANGO="Django>=2.1,<2.2"
-   - python: 2.7
-     env: DJANGO="Django>=2.2,<2.3"

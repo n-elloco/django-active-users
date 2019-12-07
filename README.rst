@@ -17,10 +17,10 @@ for last specified time interval, using Redis cache.
 Requirements
 ------------
 
-- Python: 2.7, 3.3, 3.4, 3.5, 3.6, 3.7
-- Django: 1.5+
+- Python: 2.7, 3.4, 3.5, 3.6, 3.7, 3.8
+- Django: 1.7+
 - Django-redis: 4.9.0
-                4.4.4 (for Django 1.5, 1.6 or Python 3.3)
+                4.11.0 (for Django 3.0+)
 
 
 Install
