@@ -2,9 +2,7 @@ language: python
 dist: xenial
 
 python:
-  - 3.5
   - 3.4
-  - 2.7
 
 env:
   - DJANGO="Django>=2.0,<2.1"
@@ -24,44 +22,3 @@ script:
 
 services:
   - redis-server
-
-matrix:
-
-  include:
-   - python: 3.8
-     env: DJANGO="Django>=2.0,<2.1"
-   - python: 3.8
-     env: DJANGO="Django>=2.1,<2.2"
-   - python: 3.8
-     env: DJANGO="Django>=2.2,<2.3"
-   - python: 3.8
-     env: DJANGO="Django>=3.0,<3.1 git+https://github.com/niwinz/django-redis"
-     
-   - python: 3.7
-     env: DJANGO="Django>=1.11,<2"
-   - python: 3.7
-     env: DJANGO="Django>=2.0,<2.1"
-   - python: 3.7
-     env: DJANGO="Django>=2.1,<2.2"
-   - python: 3.7
-     env: DJANGO="Django>=2.2,<2.3"
-   - python: 3.7
-     env: DJANGO="Django>=3.0,<3.1 git+https://github.com/niwinz/django-redis"
-     
-   - python: 3.6
-     env: DJANGO="Django>=1.11,<2"
-   - python: 3.6
-     env: DJANGO="Django>=2.0,<2.1"
-   - python: 3.6
-     env: DJANGO="Django>=2.1,<2.2"
-   - python: 3.6
-     env: DJANGO="Django>=2.2,<2.3"
-   - python: 3.6
-     env: DJANGO="Django>=3.0,<3.1 git+https://github.com/niwinz/django-redis"
-
-  exclude:
-   - python: 3.5
-     env: DJANGO="Django>=1.7,<1.8"
-
-   - python: 2.7
-     env: DJANGO="Django>=2.0,<2.1"
