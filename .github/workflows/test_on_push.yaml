@@ -1,0 +1,54 @@
+on:
+  push:
+    tags:
+    - '!refs/tags/*'
+    branches:
+    - '*'
+
+jobs:
+  run_tests:
+    runs-on: [ubuntu-latest]
+
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
+        django-version: [1.8.0, 1.9.0, 1.10.0, 1.11.0, 2.0.0, 2.1.0, 2.2.0, 3.0.0]
+        exclude:
+          - python-version: 2.7
+            django-version: 2.0.0
+          - python-version: 2.7
+            django-version: 2.1.0
+          - python-version: 2.7
+            django-version: 2.2.0
+          - python-version: 2.7
+            django-version: 3.0.0
+          - python-version: 3.5
+            django-version: 1.7.0
+          - python-version: 3.5
+            django-version: 3.0.0
+          - python-version: 3.8
+            django-version: 1.8.0
+          - python-version: 3.8
+            django-version: 1.9.0
+          - python-version: 3.8
+            django-version: 1.10.0
+          - python-version: 3.8
+            django-version: 1.11.0
+    steps:
+     - uses: actions/checkout@v1
+     - uses: actions/setup-python@v1
+       with:
+         python-version: ${{ matrix.python-version }}
+     - name: Install requirements
+       run: |
+         pip install -r REQUIREMENTS
+         pip install -U Django~=${{ matrix.django-version }}
+     - name: Tests
+       run: python tests/run_tests.py

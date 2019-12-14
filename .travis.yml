@@ -1,9 +1,8 @@
 language: python
+dist: xenial
 
 python:
-  - 3.5
   - 3.4
-  - 2.7
 
 env:
   - DJANGO="Django>=2.0,<2.1"
@@ -12,8 +11,6 @@ env:
   - DJANGO="Django>=1.9,<1.10"
   - DJANGO="Django>=1.8,<1.9"
   - DJANGO="Django>=1.7,<1.8"
-  - DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
-  - DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
 
 install:
   - pip install $DJANGO
@@ -25,31 +22,3 @@ script:
 
 services:
   - redis-server
-
-matrix:
-
-  include:
-   - python: 3.6
-     env: DJANGO="Django>=1.11,<2"
-   - python: 3.6
-     env: DJANGO="Django>=2.0,<2.1"
-
-   - python: 3.3
-     env: DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
-   - python: 3.3
-     env: DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
-   - python: 3.3
-     env: DJANGO="Django>=1.7,<1.8 django-redis==4.4.4"
-   - python: 3.3
-     env: DJANGO="Django>=1.8,<1.9 django-redis==4.4.4"
-
-  exclude:
-   - python: 3.5
-     env: DJANGO="Django>=1.7,<1.8"
-   - python: 3.5
-     env: DJANGO="Django>=1.6,<1.7 django-redis==4.4.4"
-   - python: 3.5
-     env: DJANGO="Django>=1.5,<1.6 django-redis==4.4.4"
-
-   - python: 2.7
-     env: DJANGO="Django>=2.0,<2.1"
