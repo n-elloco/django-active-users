@@ -4,7 +4,10 @@ MONITORING OF DJANGO ACTIVE USERS
 .. image:: https://img.shields.io/pypi/v/django-active-users.svg
     :target: https://pypi.python.org/pypi/django-active-users
 
-.. image:: https://travis-ci.org/n-elloco/django-active-users.svg?branch=master
+.. image:: https://github.com/n-elloco/django-active-users/workflows/Tests/badge.svg?branch=master
+    :target: https://github.com/n-elloco/django-active-users/actions?query=workflow%3A%22Tests%22
+
+.. image:: https://img.shields.io/travis/n-elloco/django-active-users/master.svg?label=Python%203.4%20tests&logo=travis
     :target: https://travis-ci.org/n-elloco/django-active-users
 
 
