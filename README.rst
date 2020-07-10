@@ -67,7 +67,7 @@ For applications with Django version earlier than 1.10 use ``MIDDLEWARE_CLASSES`
 Settings
 --------
 
-``ACTIVE_USERS_KEY_EXPIRE`` - Time of key expire (interval after the last request during which the visitor is considered active) in seconds. Default is 20.
+``ACTIVE_USERS_KEY_EXPIRE`` - Time of key expire (interval after the last request during which the visitor is considered as active) in seconds. Default is 20.
 
 ``ACTIVE_USERS_EXCLUDE_URL_PATTERNS`` - List of regular expressions for excluded URLs. If they are matched, the visitor (and pageview) key will not be create.
 
@@ -125,7 +125,7 @@ from request header. Also, we want use all dimensions from class ``ActiveUserEnt
         @classmethod
         def create_from_request(cls, request):
             instance = super(OurActiveUserEntry, cls).create_from_request(request)
-            instance.app_id = request.META.get('HTTP_SERVICE_ID', u'')
+            instance.service_id = request.META.get('HTTP_SERVICE_ID', u'')
             return instance
 
 
