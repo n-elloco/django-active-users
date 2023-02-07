@@ -33,7 +33,6 @@ def main():
             }
         },
         SITE_ID=1,
-        MIDDLEWARE_CLASSES=MIDDLEWARE,  # for old django versions
         MIDDLEWARE=MIDDLEWARE,
         INSTALLED_APPS=(
             'django.contrib.auth',
@@ -43,6 +42,7 @@ def main():
             'test_app'
         ),
         ROOT_URLCONF='test_app.views',
+        SECRET_KEY='secret',
     )
 
     settings.configure(**conf_kwargs)

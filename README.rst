@@ -7,9 +7,6 @@ MONITORING OF DJANGO ACTIVE USERS
 .. image:: https://github.com/n-elloco/django-active-users/workflows/Tests/badge.svg?branch=master
     :target: https://github.com/n-elloco/django-active-users/actions?query=workflow%3A%22Tests%22
 
-.. image:: https://img.shields.io/travis/n-elloco/django-active-users/master.svg?label=Python%203.4%20tests&logo=travis
-    :target: https://travis-ci.org/n-elloco/django-active-users
-
 
 *Online monitoring of active users in Django using Redis*
 
@@ -20,10 +17,12 @@ for last specified time interval, using Redis cache.
 Requirements
 ------------
 
-- Python: 2.7, 3.4, 3.5, 3.6, 3.7, 3.8
-- Django: 1.7+
-- Django-redis: 4.9.0
-                4.11.0 (for Django 3.0+)
+- Python: 2.7, 3.6+
+- Django: 1.11+
+- Django-redis:
+  4.9.0
+
+  4.11.0 (for Django 3.0+)
 
 
 Install
@@ -46,17 +45,6 @@ Add ``active_users.middleware.ActiveUsersSessionMiddleware`` to your project's
 .. code-block:: python
 
     MIDDLEWARE = (
-        ...
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'active_users.middleware.ActiveUsersSessionMiddleware',
-        ...
-    )
-
-For applications with Django version earlier than 1.10 use ``MIDDLEWARE_CLASSES`` option
-
-.. code-block:: python
-
-    MIDDLEWARE_CLASSES = (
         ...
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'active_users.middleware.ActiveUsersSessionMiddleware',

@@ -1,5 +1,9 @@
 # coding:utf-8
-from django.utils.encoding import force_text
+try:
+    from django.utils.encoding import force_str
+except ImportError:
+    # FIXME: Django 2 compatibility
+    from django.utils.encoding import force_text as force_str
 from django_redis import get_redis_connection
 
 from active_users.settings import active_users_settings as settings
@@ -7,7 +11,7 @@ from active_users.settings import active_users_settings as settings
 
 def get_active_users_keys(pattern='au:*'):
     """ Get all keys from redis """
-    return [force_text(key) for key in get_redis_connection().keys(pattern)]
+    return [force_str(key) for key in get_redis_connection().keys(pattern)]
 
 
 def get_active_users_count():

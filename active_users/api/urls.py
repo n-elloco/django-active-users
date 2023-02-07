@@ -1,11 +1,11 @@
 # coding: utf-8
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
 
 
 _patterns = [
-    url(r'^active-users-info/$', views.active_users_info_view)
+    re_path(r'^active-users-info/$', views.active_users_info_view)
 ]
 
 try:

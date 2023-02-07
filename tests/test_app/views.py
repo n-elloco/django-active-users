@@ -1,6 +1,7 @@
 # coding: utf-8
-from django.conf.urls import url, include
+from django.conf.urls import include
 from django.http import HttpResponse
+from django.urls import re_path
 
 
 def active_view(request):
@@ -12,9 +13,9 @@ def excluded_view(request):
 
 
 _patterns = [
-    url(r'^active-users/', include('active_users.api.urls')),
-    url(r'^excluded/$', excluded_view),
-    url(r'^$', active_view),
+    re_path(r'^active-users/', include('active_users.api.urls')),
+    re_path(r'^excluded/$', excluded_view),
+    re_path(r'^$', active_view),
 ]
 
 try:
