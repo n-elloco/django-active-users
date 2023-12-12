@@ -10,6 +10,7 @@ _patterns = [
 
 try:
     from django.conf.urls import patterns
+
     urlpatterns = patterns('', *_patterns)
 except ImportError:
     urlpatterns = _patterns

@@ -4,6 +4,7 @@ try:
 except ImportError:
     # FIXME: Django 2 compatibility
     from django.utils.encoding import force_text as force_str
+
 from django_redis import get_redis_connection
 
 from active_users.settings import active_users_settings as settings

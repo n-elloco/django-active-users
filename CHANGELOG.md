@@ -1,12 +1,16 @@
 # CHANGELOG
 
+## v0.4.1
+
+- Pycharm autoformat;
+- `ActiveUsersSessionMiddleware` using `pk` as a universal attribute instead of `id`;
+
 ## v0.4.0
 
 - Added support for Python 3.9, 3.10, 3.11
 - Added support for Django 4
 - Dropped support for Python 2.7, 3.4, 3.5
 - Dropped support for Django 1.x
-
 
 ## v0.3.0
 
