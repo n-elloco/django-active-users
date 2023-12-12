@@ -40,7 +40,8 @@ def reload_settings(*args, **kwargs):
         key = kwargs['setting'].replace(PREFIX + '_', '')
         if key in DEFAULTS:
             active_users_settings.set_setting(
-                key, kwargs['value'] or DEFAULTS[key]
+                key,
+                kwargs['value'] or DEFAULTS[key]
             )
 
 
