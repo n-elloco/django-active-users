@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='django-active-users',
-    version='0.4.0',
+    version='0.4.1',
     packages=['active_users', 'active_users.api'],
     url='https://github.com/n-elloco/django-active-users',
     license='MIT',
@@ -24,5 +24,5 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
-    ]
+    ],
 )

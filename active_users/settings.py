@@ -1,13 +1,13 @@
 # coding:utf-8
 from django.conf import settings
 from django.test.signals import setting_changed
+
 try:
     from django.utils.module_loading import import_string
 except ImportError:
     from django.utils.module_loading import import_by_path as import_string
 
 from active_users.keys import AbstractActiveUserEntry
-
 
 PREFIX = 'ACTIVE_USERS'
 
@@ -40,7 +40,9 @@ def reload_settings(*args, **kwargs):
         key = kwargs['setting'].replace(PREFIX + '_', '')
         if key in DEFAULTS:
             active_users_settings.set_setting(
-                key, kwargs['value'] or DEFAULTS[key])
+                key,
+                kwargs['value'] or DEFAULTS[key]
+            )
 
 
 setting_changed.connect(reload_settings)

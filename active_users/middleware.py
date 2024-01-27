@@ -25,7 +25,7 @@ class ActiveUsersSessionMiddleware(parent_class):
             if any(re.search(pat, request.path)
                    for pat in settings.EXCLUDE_URL_PATTERNS):
                 return
-        if request.user.id is not None:
+        if request.user.pk is not None:
             key = settings.KEY_CLASS.create_from_request(request)
             self.redis_client.setex(
                 name=key.dump(),
